@@ -46,7 +46,7 @@ class Deck{                                                                     
         console.log('Now Dealing Cards to Players');
         let dealingCards1 = shuffledCards.splice(0, 26);
         players[0].hands.push(...dealingCards1);                                                            //This is pushing the first half of the shuffled cards to Player 1
-        console.log('dealing1', dealingCards1);                                                                    //this will splice the first 26 cards of the shuffled deck and assign that array to the declared variable
+        console.log('dealing1', dealingCards1);                                                             //this will splice the first 26 cards of the shuffled deck and assign that array to the declared variable
         let dealingCards2 = shuffledCards.splice(0, 26);                                                 //This will splice the last 26 cards of the shuffled deck and assign at array to the declared variable
         players[1].hands.push(...dealingCards2);                                                            //This is pushing the last half of the shuffled cards to Player 2
         console.log('dealing2', dealingCards2);
@@ -83,7 +83,7 @@ class Game{
         myDeck.dealDeck(this.players, shuffledDeck);
         console.log(this.players);                                                                       
 
-        //Players Take Turns Method (This is the Game Play)
+        //Play Game Method (This is the Actual Game Play. Should run until one player is out of cards.)
         this.playGame();
 
         //Determine Outcome of Game and output game results.
@@ -97,9 +97,9 @@ class Game{
         console.log('taking turns', player1, player2)
         let roundWinner = '';
         let turn = 0;
-        //for (let i = 0; i < 50; i++){
-        while (player1.hands.length !== 0 && player2.hands.length !== 0) {                 //This While Loop will run until one player is out of cards.
-            let player1Card = player1.hands.pop();
+        for (let i = 0; i < 50; i++){ //This loop will make the game last a set amount of turns
+        //while (player1.hands.length !== 0 && player2.hands.length !== 0) {                 //This While Loop will run until one player is out of cards.
+            let player1Card = player1.hands.pop();                                           //should pop last card from the hands array
             console.log('Player1 Card', player1Card.value, player1Card.suit);
             console.log(this.players);
             let player2Card = player2.hands.pop();
@@ -109,7 +109,7 @@ class Game{
                 player1.hands.unshift(player1Card);
                 player1.hands.unshift(player2Card);
                 player1.points += 1;
-                console.log('Turn: ' + (turn += 1)+ '\nPlayer 1 card: ' + player1Card + ',\nPlayer 2 card: ' + player2Card + "\nRound Winner: " + roundWinner + '\nPlayer 1 Points: '+ player1.points + '\nPlayer 2 Points: ' + player2.points + '.');
+                console.log('Turn: ', (turn += 1), '\nPlayer 1 card: ', player1Card.suit, player1Card.value, ',\nPlayer 2 card: ', player2Card.suit, player2Card.value, "\nRound Winner: ", roundWinner, '\nPlayer 1 Points: ', player1.points, '\nPlayer 2 Points: ', player2.points, '.');
             }
             else if (player2Card.value > player1Card.value) {                                   //If Player 2 has a better card, Player 2 Gets point, and both play cards. 
                 roundWinner = player2.name;
@@ -118,25 +118,26 @@ class Game{
                 player2.points += 1;
                 console.log('Turn: ' + (turn += 1) + '\nPlayer 1 card: ' + player1Card + ',\nPlayer 2 card: ' + player2Card + "\nRound Winner: " + roundWinner + '\nPlayer 1 Points: ' + player1.points + '\nPlayer 2 Points: ' + player2.points + '.');
             }
-             else {
-                 player1.hands.unshift(player1Card);
-                 player2.hands.unshift(player2Card);
+             else {                                                                             //If Both players play a card of the same value, each player will get their card back, and no points awarded.
+                player1.hands.unshift(player1Card);
+                player2.hands.unshift(player2Card);
                 console.log('Turn: ' + (turn += 1) + '\nPlayer 1 card: ' + player1Card + ',\nPlayer 2 card: ' + player2Card + "\nTIED MATCH, NO WINNER " + '\nPlayer 1 Points: ' + player1.points + '\nPlayer 2 Points: ' + player2.points + '.');
              }
         }
     }
 
-    endGame() {                                                                                         //This Method will end the game and announce the winner!
+    endGame() {                                                                                         //This Method will run when the game is over and announce the winner!
         let gameWinner = '';
         let player1 = this.players[0];
         let player2 = this.players[1];
         let winnerPoints = 0;
+
         if (player1.points > player2.points) {
-            gameWinner = 'GAME OVER! Player 1 has defeated Player 2!';
-            winnerPoints = this.players1.points;
+            gameWinner = player1;
+            winnerPoints = player1;
         } else if (player2.points > player1.points) {
-            gameWinner = player2.name
-            winnerPoints = player2.points;
+            gameWinner = player2
+            winnerPoints = player2;
         } 
         console.log('GAME OVER! ' + gameWinner + " Won the game!\nFINAL SCORES:\n" + player1.name + ": " + player1.points + "\n" + player2.name + ': ' + player2.points + "\nThank you for Playing!");
     } 
