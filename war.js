@@ -117,11 +117,14 @@ class Game{
         if (player1.points > player2.points) {
             gameWinner = player1.name;
             winnerPoints = player1.points;
+            alert('GAME OVER! ' + gameWinner + " Won the game!\nFINAL SCORES:\n" + player1.name + ": " + player1.points + "\n" + player2.name + ': ' + player2.points + "\nThank you for Playing!");
         } else if (player2.points > player1.points) {
             gameWinner = player2.name;
             winnerPoints = player2.points;
-        } 
-        console.log('GAME OVER! ' + gameWinner + " Won the game!\nFINAL SCORES:\n" + player1.name + ": " + player1.points + "\n" + player2.name + ': ' + player2.points + "\nThank you for Playing!");
+            alert('GAME OVER! ' + gameWinner + " Won the game!\nFINAL SCORES:\n" + player1.name + ": " + player1.points + "\n" + player2.name + ': ' + player2.points + "\nThank you for Playing!");
+        } else {
+            alert('GAME OVER! \nTIED GAME\nFINAL SCORES:\n' + player1.name + ": " + player1.points + "\n" + player2.name + ': ' + player2.points + "\nThank you for Playing!");
+        }
     } 
 }
 
