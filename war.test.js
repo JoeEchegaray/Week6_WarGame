@@ -8,8 +8,8 @@ describe("Create a Card", function () {
         let name = 'Ace';
         let value = 14;
         let card = new Card(suit, name, value)
-        // console.log(card);
-        // console.log({ suit: suit, name: name, value: value });
+        console.log(card);
+        console.log({ suit: suit, name: name, value: value });
         expect(card).to.deep.equal({ suit: suit, name: name, value: value });
     });
 });
