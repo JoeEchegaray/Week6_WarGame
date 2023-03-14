@@ -93,15 +93,21 @@ class Game{
             let player2Card = player2.hands.pop();
             if (player1Card.value > player2Card.value) {                                       
                 roundWinner = player1.name;
+                //player1.hands.unshift(player1Card); //Uncomment for a never ending game of War
+                //player1.hands.unshift(player2Card); //Uncomment for a never ending game of War
                 player1.points += 1;
                 console.log('Turn: ', (turn += 1), '\nPlayer 1 card: ', player1Card.name, ' of ', player1Card.suit, '\nPlayer 2 card: ', player2Card.name, ' of ', player2Card.suit, "\nRound Winner: ", roundWinner, '\nPlayer 1 Points: ', player1.points, '\nPlayer 2 Points: ', player2.points, '.');
             }
             else if (player2Card.value > player1Card.value) {                                    
                 roundWinner = player2.name;
+                //player2.hands.unshift(player1Card); //Uncomment for a never ending game of War
+                //player2.hands.unshift(player2Card); //Uncomment for a never ending game of War
                 player2.points += 1;
                 console.log('Turn: ', (turn += 1), '\nPlayer 1 card: ', player1Card.name, ' of ', player1Card.suit, '\nPlayer 2 card: ', player2Card.name, ' of ', player2Card.suit, "\nRound Winner: ", roundWinner, '\nPlayer 1 Points: ', player1.points, '\nPlayer 2 Points: ', player2.points, '.');
             }
              else {                                                                             
+                //player1.hands.unshift(player1Card); //Uncomment for a never ending game of War
+                //player2.hands.unshift(player2Card); //Uncomment for a never ending game of War
                 console.log('Turn: ', (turn += 1), '\nPlayer 1 card: ', player1Card.name, ' of ', player1Card.suit, '\nPlayer 2 card: ', player2Card.name, ' of ', player2Card.suit, "\nTIED MATCH, NO WINNER ", '\nPlayer 1 Points: ', player1.points, '\nPlayer 2 Points: ', player2.points, '.');
              }
         }
